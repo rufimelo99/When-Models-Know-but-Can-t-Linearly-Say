@@ -1,0 +1,48 @@
+{
+  "model": "deepseek-6.7b",
+  "experiment": "paired_ranking",
+  "ranking_accuracy": {
+    "3": {
+      "accuracy": 57.135689186416336,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "7": {
+      "accuracy": 57.25105588044185,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "11": {
+      "accuracy": 57.53875123969768,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "15": {
+      "accuracy": 55.98768638213467,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "19": {
+      "accuracy": 57.31309419992476,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "23": {
+      "accuracy": 58.42016560651141,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "27": {
+      "accuracy": 58.881044594918095,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    }
+  }
+}

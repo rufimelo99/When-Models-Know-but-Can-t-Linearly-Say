@@ -1,0 +1,48 @@
+{
+  "model": "codellama-13b",
+  "experiment": "paired_ranking",
+  "ranking_accuracy": {
+    "3": {
+      "accuracy": 57.40211731814917,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "7": {
+      "accuracy": 57.47949155295646,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "11": {
+      "accuracy": 57.62109495229302,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "15": {
+      "accuracy": 57.886133767655004,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "19": {
+      "accuracy": 58.18061540302999,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "23": {
+      "accuracy": 58.628937108854004,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "27": {
+      "accuracy": 57.85727873533737,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    }
+  }
+}

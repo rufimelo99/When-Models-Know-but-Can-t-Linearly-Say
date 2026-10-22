@@ -1,0 +1,391 @@
+{
+  "model": "codellama-7b",
+  "experiment": "cwe_universality",
+  "cross_family_transfer": {
+    "memory_safety->memory_safety": {
+      "mean": 85.92425847457628,
+      "std": 1.3907384473299735,
+      "min": 84.85169491525424,
+      "max": 89.51271186440678
+    },
+    "memory_safety->injection": {
+      "mean": 85.42234332425068,
+      "std": 0.5276544068402481,
+      "min": 84.74114441416893,
+      "max": 86.64850136239782
+    },
+    "memory_safety->resource": {
+      "mean": 81.88943894389439,
+      "std": 0.7460041798690232,
+      "min": 81.1881188118812,
+      "max": 83.4983498349835
+    },
+    "memory_safety->info_disclosure": {
+      "mean": 81.64335664335664,
+      "std": 1.5538801428873403,
+      "min": 80.41958041958041,
+      "max": 85.3146853146853
+    },
+    "memory_safety->control_flow": {
+      "mean": 91.34615384615384,
+      "std": 0.637812459683728,
+      "min": 90.76923076923077,
+      "max": 92.3076923076923
+    },
+    "injection->memory_safety": {
+      "mean": 85.83156779661016,
+      "std": 1.4011010663571262,
+      "min": 84.85169491525424,
+      "max": 89.40677966101694
+    },
+    "injection->injection": {
+      "mean": 85.66076294277929,
+      "std": 0.45057072736113635,
+      "min": 85.01362397820164,
+      "max": 86.64850136239782
+    },
+    "injection->resource": {
+      "mean": 82.26072607260727,
+      "std": 0.958659244110747,
+      "min": 81.1881188118812,
+      "max": 83.4983498349835
+    },
+    "injection->info_disclosure": {
+      "mean": 81.2062937062937,
+      "std": 2.081447709753612,
+      "min": 78.32167832167832,
+      "max": 86.01398601398601
+    },
+    "injection->control_flow": {
+      "mean": 91.15384615384616,
+      "std": 0.3846153846153797,
+      "min": 90.76923076923077,
+      "max": 91.53846153846153
+    },
+    "resource->memory_safety": {
+      "mean": 85.69915254237287,
+      "std": 1.3399481610882966,
+      "min": 84.95762711864407,
+      "max": 89.19491525423729
+    },
+    "resource->injection": {
+      "mean": 85.35422343324251,
+      "std": 0.32669152066162854,
+      "min": 85.01362397820164,
+      "max": 85.83106267029973
+    },
+    "resource->resource": {
+      "mean": 81.93069306930693,
+      "std": 0.6337578999891579,
+      "min": 81.1881188118812,
+      "max": 83.16831683168317
+    },
+    "resource->info_disclosure": {
+      "mean": 81.99300699300699,
+      "std": 1.7394885264101754,
+      "min": 80.41958041958041,
+      "max": 86.01398601398601
+    },
+    "resource->control_flow": {
+      "mean": 91.0576923076923,
+      "std": 0.5353619579644219,
+      "min": 90.0,
+      "max": 91.53846153846153
+    },
+    "info_disclosure->memory_safety": {
+      "mean": 85.69915254237289,
+      "std": 1.262327890658152,
+      "min": 84.95762711864407,
+      "max": 88.98305084745762
+    },
+    "info_disclosure->injection": {
+      "mean": 85.38828337874659,
+      "std": 0.42947957128468983,
+      "min": 84.74114441416893,
+      "max": 86.10354223433242
+    },
+    "info_disclosure->resource": {
+      "mean": 81.8069306930693,
+      "std": 0.45002937766649204,
+      "min": 81.1881188118812,
+      "max": 82.50825082508251
+    },
+    "info_disclosure->info_disclosure": {
+      "mean": 82.08041958041957,
+      "std": 1.944807295567043,
+      "min": 80.41958041958041,
+      "max": 86.7132867132867
+    },
+    "info_disclosure->control_flow": {
+      "mean": 90.86538461538461,
+      "std": 0.4611376464723743,
+      "min": 90.0,
+      "max": 91.53846153846153
+    },
+    "control_flow->memory_safety": {
+      "mean": 85.91101694915255,
+      "std": 1.3283830724559793,
+      "min": 84.85169491525424,
+      "max": 89.19491525423729
+    },
+    "control_flow->injection": {
+      "mean": 85.32016348773843,
+      "std": 0.4607544025363959,
+      "min": 85.01362397820164,
+      "max": 86.37602179836512
+    },
+    "control_flow->resource": {
+      "mean": 82.01320132013203,
+      "std": 0.7192902547096822,
+      "min": 81.1881188118812,
+      "max": 83.16831683168317
+    },
+    "control_flow->info_disclosure": {
+      "mean": 81.2062937062937,
+      "std": 1.9913961101214177,
+      "min": 78.32167832167832,
+      "max": 85.3146853146853
+    },
+    "control_flow->control_flow": {
+      "mean": 91.34615384615384,
+      "std": 0.6378124596837279,
+      "min": 90.76923076923077,
+      "max": 92.3076923076923
+    }
+  },
+  "family_stats": {
+    "memory_safety": {
+      "n_pairs": 944
+    },
+    "injection": {
+      "n_pairs": 367
+    },
+    "resource": {
+      "n_pairs": 303
+    },
+    "info_disclosure": {
+      "n_pairs": 143
+    },
+    "control_flow": {
+      "n_pairs": 130
+    }
+  },
+  "transfer_by_layer": {
+    "0": {
+      "memory_safety->memory_safety": 89.51271186440678,
+      "memory_safety->injection": 86.64850136239782,
+      "memory_safety->resource": 83.4983498349835,
+      "memory_safety->info_disclosure": 85.3146853146853,
+      "memory_safety->control_flow": 90.76923076923077,
+      "injection->memory_safety": 89.40677966101694,
+      "injection->injection": 85.55858310626702,
+      "injection->resource": 83.16831683168317,
+      "injection->info_disclosure": 86.01398601398601,
+      "injection->control_flow": 90.76923076923077,
+      "resource->memory_safety": 89.19491525423729,
+      "resource->injection": 85.83106267029973,
+      "resource->resource": 83.16831683168317,
+      "resource->info_disclosure": 86.01398601398601,
+      "resource->control_flow": 90.0,
+      "info_disclosure->memory_safety": 88.98305084745762,
+      "info_disclosure->injection": 86.10354223433242,
+      "info_disclosure->resource": 82.50825082508251,
+      "info_disclosure->info_disclosure": 86.7132867132867,
+      "info_disclosure->control_flow": 90.76923076923077,
+      "control_flow->memory_safety": 89.19491525423729,
+      "control_flow->injection": 86.37602179836512,
+      "control_flow->resource": 83.16831683168317,
+      "control_flow->info_disclosure": 85.3146853146853,
+      "control_flow->control_flow": 90.76923076923077
+    },
+    "3": {
+      "memory_safety->memory_safety": 85.0635593220339,
+      "memory_safety->injection": 85.28610354223434,
+      "memory_safety->resource": 82.17821782178217,
+      "memory_safety->info_disclosure": 80.41958041958041,
+      "memory_safety->control_flow": 90.76923076923077,
+      "injection->memory_safety": 84.95762711864407,
+      "injection->injection": 85.28610354223434,
+      "injection->resource": 82.50825082508251,
+      "injection->info_disclosure": 80.41958041958041,
+      "injection->control_flow": 90.76923076923077,
+      "resource->memory_safety": 85.0635593220339,
+      "resource->injection": 85.01362397820164,
+      "resource->resource": 82.17821782178217,
+      "resource->info_disclosure": 80.41958041958041,
+      "resource->control_flow": 91.53846153846153,
+      "info_disclosure->memory_safety": 85.0635593220339,
+      "info_disclosure->injection": 85.28610354223434,
+      "info_disclosure->resource": 82.50825082508251,
+      "info_disclosure->info_disclosure": 80.41958041958041,
+      "info_disclosure->control_flow": 91.53846153846153,
+      "control_flow->memory_safety": 85.0635593220339,
+      "control_flow->injection": 85.01362397820164,
+      "control_flow->resource": 82.17821782178217,
+      "control_flow->info_disclosure": 80.41958041958041,
+      "control_flow->control_flow": 91.53846153846153
+    },
+    "7": {
+      "memory_safety->memory_safety": 84.85169491525424,
+      "memory_safety->injection": 85.01362397820164,
+      "memory_safety->resource": 81.51815181518151,
+      "memory_safety->info_disclosure": 81.81818181818183,
+      "memory_safety->control_flow": 90.76923076923077,
+      "injection->memory_safety": 84.85169491525424,
+      "injection->injection": 85.01362397820164,
+      "injection->resource": 81.51815181518151,
+      "injection->info_disclosure": 81.81818181818183,
+      "injection->control_flow": 91.53846153846153,
+      "resource->memory_safety": 84.95762711864407,
+      "resource->injection": 85.01362397820164,
+      "resource->resource": 81.51815181518151,
+      "resource->info_disclosure": 81.81818181818183,
+      "resource->control_flow": 90.76923076923077,
+      "info_disclosure->memory_safety": 84.95762711864407,
+      "info_disclosure->injection": 85.01362397820164,
+      "info_disclosure->resource": 81.51815181518151,
+      "info_disclosure->info_disclosure": 81.81818181818183,
+      "info_disclosure->control_flow": 90.76923076923077,
+      "control_flow->memory_safety": 84.85169491525424,
+      "control_flow->injection": 85.01362397820164,
+      "control_flow->resource": 81.51815181518151,
+      "control_flow->info_disclosure": 81.81818181818183,
+      "control_flow->control_flow": 90.76923076923077
+    },
+    "11": {
+      "memory_safety->memory_safety": 85.27542372881356,
+      "memory_safety->injection": 85.55858310626702,
+      "memory_safety->resource": 81.1881188118812,
+      "memory_safety->info_disclosure": 81.11888111888112,
+      "memory_safety->control_flow": 90.76923076923077,
+      "injection->memory_safety": 85.0635593220339,
+      "injection->injection": 85.83106267029973,
+      "injection->resource": 81.1881188118812,
+      "injection->info_disclosure": 81.11888111888112,
+      "injection->control_flow": 90.76923076923077,
+      "resource->memory_safety": 85.0635593220339,
+      "resource->injection": 85.28610354223434,
+      "resource->resource": 81.1881188118812,
+      "resource->info_disclosure": 80.41958041958041,
+      "resource->control_flow": 90.76923076923077,
+      "info_disclosure->memory_safety": 84.95762711864407,
+      "info_disclosure->injection": 85.55858310626702,
+      "info_disclosure->resource": 81.1881188118812,
+      "info_disclosure->info_disclosure": 80.41958041958041,
+      "info_disclosure->control_flow": 90.76923076923077,
+      "control_flow->memory_safety": 85.0635593220339,
+      "control_flow->injection": 85.01362397820164,
+      "control_flow->resource": 81.1881188118812,
+      "control_flow->info_disclosure": 81.11888111888112,
+      "control_flow->control_flow": 90.76923076923077
+    },
+    "15": {
+      "memory_safety->memory_safety": 85.59322033898306,
+      "memory_safety->injection": 85.55858310626702,
+      "memory_safety->resource": 81.51815181518151,
+      "memory_safety->info_disclosure": 80.41958041958041,
+      "memory_safety->control_flow": 92.3076923076923,
+      "injection->memory_safety": 85.48728813559322,
+      "injection->injection": 85.55858310626702,
+      "injection->resource": 81.51815181518151,
+      "injection->info_disclosure": 81.11888111888112,
+      "injection->control_flow": 91.53846153846153,
+      "resource->memory_safety": 85.16949152542372,
+      "resource->injection": 85.55858310626702,
+      "resource->resource": 81.84818481848185,
+      "resource->info_disclosure": 81.81818181818183,
+      "resource->control_flow": 91.53846153846153,
+      "info_disclosure->memory_safety": 85.38135593220339,
+      "info_disclosure->injection": 85.55858310626702,
+      "info_disclosure->resource": 81.84818481848185,
+      "info_disclosure->info_disclosure": 81.11888111888112,
+      "info_disclosure->control_flow": 91.53846153846153,
+      "control_flow->memory_safety": 85.27542372881356,
+      "control_flow->injection": 85.55858310626702,
+      "control_flow->resource": 81.1881188118812,
+      "control_flow->info_disclosure": 81.81818181818183,
+      "control_flow->control_flow": 91.53846153846153
+    },
+    "19": {
+      "memory_safety->memory_safety": 85.59322033898306,
+      "memory_safety->injection": 84.74114441416893,
+      "memory_safety->resource": 81.1881188118812,
+      "memory_safety->info_disclosure": 81.11888111888112,
+      "memory_safety->control_flow": 91.53846153846153,
+      "injection->memory_safety": 85.38135593220339,
+      "injection->injection": 85.55858310626702,
+      "injection->resource": 81.1881188118812,
+      "injection->info_disclosure": 81.11888111888112,
+      "injection->control_flow": 90.76923076923077,
+      "resource->memory_safety": 85.0635593220339,
+      "resource->injection": 85.01362397820164,
+      "resource->resource": 81.1881188118812,
+      "resource->info_disclosure": 81.11888111888112,
+      "resource->control_flow": 90.76923076923077,
+      "info_disclosure->memory_safety": 85.27542372881356,
+      "info_disclosure->injection": 84.74114441416893,
+      "info_disclosure->resource": 81.51815181518151,
+      "info_disclosure->info_disclosure": 81.81818181818183,
+      "info_disclosure->control_flow": 90.76923076923077,
+      "control_flow->memory_safety": 85.48728813559322,
+      "control_flow->injection": 85.01362397820164,
+      "control_flow->resource": 81.51815181518151,
+      "control_flow->info_disclosure": 81.81818181818183,
+      "control_flow->control_flow": 90.76923076923077
+    },
+    "23": {
+      "memory_safety->memory_safety": 85.80508474576271,
+      "memory_safety->injection": 85.28610354223434,
+      "memory_safety->resource": 81.51815181518151,
+      "memory_safety->info_disclosure": 80.41958041958041,
+      "memory_safety->control_flow": 91.53846153846153,
+      "injection->memory_safety": 86.12288135593221,
+      "injection->injection": 85.83106267029973,
+      "injection->resource": 83.4983498349835,
+      "injection->info_disclosure": 79.72027972027972,
+      "injection->control_flow": 91.53846153846153,
+      "resource->memory_safety": 85.69915254237289,
+      "resource->injection": 85.28610354223434,
+      "resource->resource": 81.84818481848185,
+      "resource->info_disclosure": 81.11888111888112,
+      "resource->control_flow": 91.53846153846153,
+      "info_disclosure->memory_safety": 85.27542372881356,
+      "info_disclosure->injection": 85.01362397820164,
+      "info_disclosure->resource": 81.51815181518151,
+      "info_disclosure->info_disclosure": 81.11888111888112,
+      "info_disclosure->control_flow": 90.76923076923077,
+      "control_flow->memory_safety": 86.01694915254238,
+      "control_flow->injection": 85.01362397820164,
+      "control_flow->resource": 82.83828382838284,
+      "control_flow->info_disclosure": 79.02097902097903,
+      "control_flow->control_flow": 92.3076923076923
+    },
+    "27": {
+      "memory_safety->memory_safety": 85.69915254237289,
+      "memory_safety->injection": 85.28610354223434,
+      "memory_safety->resource": 82.50825082508251,
+      "memory_safety->info_disclosure": 82.51748251748252,
+      "memory_safety->control_flow": 92.3076923076923,
+      "injection->memory_safety": 85.38135593220339,
+      "injection->injection": 86.64850136239782,
+      "injection->resource": 83.4983498349835,
+      "injection->info_disclosure": 78.32167832167832,
+      "injection->control_flow": 91.53846153846153,
+      "resource->memory_safety": 85.38135593220339,
+      "resource->injection": 85.83106267029973,
+      "resource->resource": 82.50825082508251,
+      "resource->info_disclosure": 83.21678321678321,
+      "resource->control_flow": 91.53846153846153,
+      "info_disclosure->memory_safety": 85.69915254237289,
+      "info_disclosure->injection": 85.83106267029973,
+      "info_disclosure->resource": 81.84818481848185,
+      "info_disclosure->info_disclosure": 83.21678321678321,
+      "info_disclosure->control_flow": 90.0,
+      "control_flow->memory_safety": 86.33474576271186,
+      "control_flow->injection": 85.55858310626702,
+      "control_flow->resource": 82.50825082508251,
+      "control_flow->info_disclosure": 78.32167832167832,
+      "control_flow->control_flow": 92.3076923076923
+    }
+  }
+}

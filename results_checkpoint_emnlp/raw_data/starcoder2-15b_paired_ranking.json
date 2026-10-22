@@ -1,0 +1,48 @@
+{
+  "model": "starcoder2-15b",
+  "experiment": "paired_ranking",
+  "ranking_accuracy": {
+    "3": {
+      "accuracy": 57.2755292226668,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "7": {
+      "accuracy": 57.39875089771211,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "11": {
+      "accuracy": 57.52117104408194,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "15": {
+      "accuracy": 57.2388726445744,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "19": {
+      "accuracy": 57.23812455114394,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "23": {
+      "accuracy": 57.384857734003624,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "27": {
+      "accuracy": 57.444865514175305,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    }
+  }
+}

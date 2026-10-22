@@ -1,0 +1,48 @@
+{
+  "model": "qwen-coder-7b",
+  "experiment": "paired_ranking",
+  "ranking_accuracy": {
+    "3": {
+      "accuracy": 60.52054478301015,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "7": {
+      "accuracy": 57.20659775657467,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "11": {
+      "accuracy": 57.32997973735509,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "15": {
+      "accuracy": 57.617461355630795,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "19": {
+      "accuracy": 57.73309522588147,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "23": {
+      "accuracy": 58.15021074860641,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    },
+    "27": {
+      "accuracy": 59.95568080776991,
+      "n_vulnerable": 1368,
+      "n_secure": 1368,
+      "total_pairs": 1871424
+    }
+  }
+}
