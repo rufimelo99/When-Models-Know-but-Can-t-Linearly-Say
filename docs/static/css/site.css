@@ -1,7 +1,7 @@
 /* Shared styles for the project page and the traces explorer. Light by default; dark is opt-in via the toggle. */
 :root {
   --bg: #ffffff;
-  --bg-soft: #f8fafc;
+  --bg-soft: #ffffff;
   --bg-tint: #f1f5f9;
   --surface: #ffffff;
   --text: #1e293b;
