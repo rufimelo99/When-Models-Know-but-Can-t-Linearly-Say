@@ -1,0 +1,70 @@
+{
+  "baseline": {
+    "score_mean": -19.600627109527586,
+    "n": 1000
+  },
+  "vocab_size": 44,
+  "vocab_examples": [
+    "error",
+    "Error",
+    "error",
+    "NULL",
+    "check",
+    "valid",
+    "free",
+    "check",
+    "assert",
+    "assert",
+    "catch",
+    "throw",
+    "valid",
+    "sizeof",
+    "filter",
+    "NULL",
+    "Error",
+    "filter",
+    "encode",
+    "nullptr"
+  ],
+  "language": "C",
+  "0": {
+    "mean_delta": 3.9862585639953614,
+    "sem_delta": 0.11198319578365355,
+    "n": 1000
+  },
+  "3": {
+    "mean_delta": 3.2999858837127687,
+    "sem_delta": 0.10471367544786608,
+    "n": 1000
+  },
+  "7": {
+    "mean_delta": 2.8299797496795653,
+    "sem_delta": 0.09901017869235473,
+    "n": 1000
+  },
+  "11": {
+    "mean_delta": 2.549777220726013,
+    "sem_delta": 0.09591094976694563,
+    "n": 1000
+  },
+  "15": {
+    "mean_delta": 1.7760398120880128,
+    "sem_delta": 0.08033219317999188,
+    "n": 1000
+  },
+  "19": {
+    "mean_delta": 1.14827392578125,
+    "sem_delta": 0.0657343494275115,
+    "n": 1000
+  },
+  "23": {
+    "mean_delta": 0.4320108060836792,
+    "sem_delta": 0.03354702023454185,
+    "n": 1000
+  },
+  "27": {
+    "mean_delta": 0.0,
+    "sem_delta": 0.0,
+    "n": 1000
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "model": "starcoder2-7b",
+  "experiment": "paired_ranking",
+  "ranking_accuracy": {
+    "0": {
+      "accuracy": 60.25426348207391,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "3": {
+      "accuracy": 58.13963815892682,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "7": {
+      "accuracy": 58.0448521001202,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "11": {
+      "accuracy": 58.01920467561881,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "15": {
+      "accuracy": 58.024562638202845,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "19": {
+      "accuracy": 58.102084150905334,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "23": {
+      "accuracy": 58.19067556828594,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "27": {
+      "accuracy": 58.19389356383192,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    }
+  }
+}

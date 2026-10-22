@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traces Explorer · Know but Can't Linearly Say</title>
+  <meta name="description" content="Interactive explorer for per-model, per-layer results: vulnerability-direction alignment, CWE-type separability heatmaps and cross-family transfer.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%23db2777'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M14 40 L32 22 L50 40' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/site.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../static/js/site.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <nav class="nav" aria-label="Explorer">
+    <div class="wrap">
+      <a class="brand" href="../">← Know but Can't Linearly Say</a>
+      <div class="links" id="tabs">
+        <a href="#/alignment" data-tab="alignment">Alignment</a>
+        <a href="#/pairs" data-tab="pairs">CWE pairs</a>
+        <a href="#/transfer" data-tab="transfer">Transfer</a>
+        <a href="#/models" data-tab="models">Models</a>
+      </div>
+      <span class="spacer"></span>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme" type="button">☾</button>
+    </div>
+  </nav>
+
+  <main class="wrap" style="padding-top: 36px; padding-bottom: 60px;">
+    <div id="app"><p class="muted">Loading…</p></div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Values come from the paper's experiment results and may differ slightly from the
+      paper's tables where subsets or rounding differ. Peak and mean figures are computed over the layers probed (0, 3, 7, 11, 15, 19, 23, 27).
+      <br><a href="../">Project page</a> · <a href="https://arxiv.org/abs/2610.27257">arXiv</a>
+    </div>
+  </footer>
+</body>
+</html>

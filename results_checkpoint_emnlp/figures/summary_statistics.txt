@@ -1,0 +1,4 @@
+Model	N Pairs	Peak Alignment	Peak Layer	Mean Alignment
+codellama-7b	2493	86.8	0	84.8
+qwen-7b	2493	87.5	7	84.3
+starcoder2-7b	2493	87.5	3	85.9

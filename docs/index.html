@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>When Models Know but Can't Linearly Say</title>
+  <meta name="description" content="Code LLMs encode vulnerability as a paired relational signal (which snippet is riskier) far more than as a globally separable label. Eight models, three C datasets. Findings of EMNLP 2026.">
+  <meta name="author" content="Rui Melo, André Catarino, Cláudia Mamede, Corina Pasareanu, Rui Abreu">
+  <meta name="theme-color" content="#2563eb">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="When Models Know but Can't Linearly Say">
+  <meta property="og:title" content="When Models Know but Can't Linearly Say">
+  <meta property="og:description" content="Relational encoding limits linear vulnerability classification in code LLMs. 87–88% per-pair alignment, but only 0.65 AUROC as a global classifier.">
+  <meta property="og:url" content="https://rufimelo99.github.io/SAE-Java-Bug-Detection/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="When Models Know but Can't Linearly Say">
+  <meta name="twitter:description" content="Code LLMs rank which code is riskier, but can't linearly say whether a snippet is vulnerable.">
+
+  <meta name="citation_title" content="When Models Know but Can't Linearly Say: Relational Encoding Limits Linear Vulnerability Classification in Code LLMs">
+  <meta name="citation_author" content="Melo, Rui">
+  <meta name="citation_author" content="Catarino, André">
+  <meta name="citation_author" content="Mamede, Cláudia">
+  <meta name="citation_author" content="Pasareanu, Corina">
+  <meta name="citation_author" content="Abreu, Rui">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.27257">
+  <meta name="citation_arxiv_id" content="2610.27257">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%23db2777'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M14 40 L32 22 L50 40' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/site.css">
+  <script defer src="static/js/site.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "When Models Know but Can't Linearly Say: Relational Encoding Limits Linear Vulnerability Classification in Code LLMs",
+    "author": [
+      {"@type": "Person", "name": "Rui Melo"}, {"@type": "Person", "name": "André Catarino"},
+      {"@type": "Person", "name": "Cláudia Mamede"}, {"@type": "Person", "name": "Corina Pasareanu"},
+      {"@type": "Person", "name": "Rui Abreu"}
+    ],
+    "datePublished": "2026",
+    "sameAs": "https://arxiv.org/abs/2610.27257"
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav" aria-label="Sections">
+    <div class="wrap">
+      <a class="brand" href="#top">Know but Can't Linearly Say</a>
+      <div class="links">
+        <a href="#abstract">Abstract</a>
+        <a href="#idea">Idea</a>
+        <a href="#findings">Findings</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#bibtex">BibTeX</a>
+        <a href="traces/">Traces ↗</a>
+      </div>
+      <span class="spacer"></span>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme" type="button">☾</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap">
+        <div class="venue">🏆 Accepted to Findings of EMNLP 2026</div>
+        <h1>When Models Know but <span class="grad">Can't Linearly Say</span></h1>
+        <p class="sub">Relational Encoding Limits Linear Vulnerability Classification in Code LLMs</p>
+
+        <div class="authors">
+          <span>Rui Melo<sup>1,2*</sup></span>, <span>André Catarino<sup>1,2*</sup></span>, <span>Cláudia Mamede<sup>1,2</sup></span>,
+          <span>Corina Pasareanu<sup>1</sup></span>, <span>Rui Abreu<sup>2</sup></span>
+        </div>
+        <div class="affils">
+          <sup>1</sup>Carnegie Mellon University &nbsp;·&nbsp; <sup>2</sup>Faculty of Engineering, University of Porto
+          <small>* Equal contribution &nbsp;·&nbsp; <a href="mailto:rmelo@cs.cmu.edu">rmelo@cs.cmu.edu</a></small>
+        </div>
+
+        <div class="buttons">
+          <a class="btn" href="https://arxiv.org/pdf/2610.27257v1" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6zM13 3.5V9h5.5zM8 13h8v1.6H8zm0 3.4h8V18H8z"/></svg>Paper</a>
+          <a class="btn primary" href="traces/">
+            <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>Traces</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.27257" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zm3 4v8h2.200V8zm4 0l3 4-3 4h2.600l3-4-3-4z"/></svg>arXiv</a>
+        </div>
+      </div>
+    </header>
+
+    <section style="padding-top: 28px; padding-bottom: 20px;">
+      <div class="wrap">
+        <div class="stat-band">
+          <div class="stat"><b>8</b><span>Code LLMs</span></div>
+          <div class="stat"><b>3</b><span>C datasets</span></div>
+          <div class="stat"><b>6.7–15B</b><span>Parameters</span></div>
+          <div class="stat"><b>87–88%</b><span>Per-pair alignment</span></div>
+          <div class="stat"><b>0.648</b><span>Peak global AUROC</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="abstract" class="soft">
+      <div class="wrap">
+        <h2>Abstract</h2>
+        <div class="narrow abstract prose justify" style="margin-top: 26px;">
+          <p>Large language models can detect vulnerable code, yet the form of vulnerability encoding in their representations remains unclear. We analyze eight code models spanning 6.7B–15B parameters on C programs using three datasets (DeltaSecommits, SVEN and PreciseBugs), comparing two diagnostic tasks on the same representations: identifying <em>what patterns</em> the code instantiates, and determining <em>whether it is vulnerable</em>. Models encode the first with high fidelity.</p>
+          <p>Under the studied paired C-code datasets and linear-probing setup, vulnerability information is more accessible as a <em>paired relational signal</em> (whether code A is riskier than code B) than as a globally separable categorical label. This structural difference has implications for classification: the model reliably ranks which code is riskier, but standard classifiers on isolated samples achieve limited accuracy because vulnerable and secure samples form overlapping distributions in representation space.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="idea">
+      <div class="wrap">
+        <div class="kicker">The idea</div>
+        <h2>Global labels blur. Pairs stay sharp.</h2>
+        <p class="lede">Project every snippet onto the learned vulnerability direction. Seen one at a time, vulnerable and secure code overlap heavily. Seen as <em>(secure, vulnerable)</em> pairs, almost every pair moves the same way.</p>
+        <div class="two">
+          <figure class="figure" style="margin:0">
+            <svg id="schem-global" viewBox="0 0 400 230" role="img" aria-label="Schematic: overlapping projection distributions of vulnerable and secure code"></svg>
+            <figcaption><strong>Global view.</strong> Overlapping distributions cap any single-sample linear classifier (peak AUROC ≈ 0.65).</figcaption>
+          </figure>
+          <figure class="figure" style="margin:0">
+            <svg id="schem-paired" viewBox="0 0 400 230" role="img" aria-label="Schematic: paired differences mostly point the same direction"></svg>
+            <figcaption><strong>Paired view.</strong> Within each pair the vulnerable version sits further along the direction in 87–88% of pairs.</figcaption>
+          </figure>
+        </div>
+        <p class="caption">Schematic for intuition only. Real distributions are in the paper (Fig. 3) and the <a href="traces/">traces explorer</a>.</p>
+      </div>
+    </section>
+
+    <section id="findings" class="soft">
+      <div class="wrap">
+        <div class="kicker">Key findings</div>
+        <h2>Models know what the code does, and which is worse</h2>
+        <p class="lede">Three numbers carry the paper.</p>
+        <div class="cards">
+          <div class="card">
+            <div class="num">0.877</div>
+            <p><strong>Functional identity is easy.</strong> Median pairwise CWE-type AUROC on DeltaSecommits (Qwen2.5-7B). Mean 91.4% across the 7B models and 90.8% across the 13–15B models.</p>
+          </div>
+          <div class="card">
+            <div class="num">87–88%</div>
+            <p><strong>Relative risk is easy.</strong> Per-pair alignment from layers 3 to 23, with a cross-model Pearson r of 0.921 and direction cosine ≈ 0.99 across layers.</p>
+          </div>
+          <div class="card">
+            <div class="num">0.648</div>
+            <p><strong>Absolute labels are not.</strong> Peak AUROC of a global vulnerable-vs-secure probe, about 0.23 below CWE-type separation. A shallow 64-unit MLP probe peaks at 0.635–0.644, so extra nonlinearity doesn't close the gap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="kicker">Method</div>
+        <h2>Same representations, two questions</h2>
+        <p class="lede">We read residual-stream activations at layers 0–27 and ask two diagnostic questions of the same vectors: <em>what pattern is this?</em> and <em>is it vulnerable?</em></p>
+        <div class="two">
+          <div>
+            <h3>Datasets (C code)</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Dataset</th><th class="num">Pairs</th><th>Source</th></tr></thead>
+              <tbody>
+                <tr><td><strong>DeltaSecommits</strong></td><td class="num">1,618</td><td>Real vulnerability-fixing commits (OSV / NVD)</td></tr>
+                <tr><td><strong>SVEN</strong></td><td class="num">423</td><td>Synthetically curated, 6 CWEs</td></tr>
+                <tr><td><strong>PreciseBugs</strong></td><td class="num">4,101</td><td>Real commits, 9 CWEs</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div>
+            <h3>Models (8)</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Family</th><th>Models</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Qwen2.5</strong></td><td>7B-Instruct, Coder-7B-Instruct, 14B-Instruct</td></tr>
+                <tr><td><strong>CodeLlama</strong></td><td>7B-Instruct, 13B-Instruct</td></tr>
+                <tr><td><strong>StarCoder2</strong></td><td>7B, 15B</td></tr>
+                <tr><td><strong>DeepSeek-Coder</strong></td><td>6.7B-Instruct</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+        <div class="narrow prose" style="margin-top: 32px;">
+          <p><strong>Pooling.</strong> Last-token pooling is near chance for the binary vulnerability probe. Mean-token pooling recovers a modest above-chance signal, so the information is spread across token positions rather than concentrated at the end.</p>
+          <p><strong>Pairing.</strong> For each (secure, vulnerable) pair we compare projections onto a vulnerability direction and report <em>per-pair alignment</em>: how often the vulnerable version projects higher. Evaluation uses cross-validation with bootstrap confidence intervals.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="soft">
+      <div class="wrap">
+        <div class="kicker">Results</div>
+        <h2>Alignment is stable across layers and models</h2>
+        <p class="lede">Per-pair alignment of the vulnerability direction. Hover for values and toggle models. Dashed lines are the 13–15B models.</p>
+        <figure class="figure" style="margin:0">
+          <div id="alignment-chart"><p class="muted" style="text-align:center">Loading chart…</p></div>
+          <figcaption>Plateau at 87–88% across layers 3–23 for nearly every model. Qwen2.5-7B falls to about 70% at layer 27, while DeepSeek-Coder and StarCoder2-15B dip earlier, from layer 15.</figcaption>
+        </figure>
+
+        <h3 style="margin: 48px 0 6px; text-align:center;">The ceiling holds after controlling for length</h3>
+        <p class="lede" style="margin-bottom: 20px;">Binary vulnerable-vs-secure probe after regressing out log character count. Peak AUROC stays at 0.64–0.66 for all eight models.</p>
+        <div class="narrow">
+          <div class="table-wrap"><table id="length-table">
+            <thead><tr><th>Model</th><th class="num">Peak layer</th><th class="num">Peak AUROC</th><th style="width:34%"></th></tr></thead>
+            <tbody></tbody>
+          </table></div>
+          <p class="caption">Table 1 of the paper (95% bootstrap CIs are in the paper).</p>
+        </div>
+
+        <div class="narrow prose" style="margin-top: 40px;">
+          <h3>Implications</h3>
+          <p>If vulnerability is encoded mainly as a <em>difference</em>, a single-snippet linear classifier is a limited readout. This suggests comparative settings, such as a change judged against its baseline, may suit these representations better.</p>
+          <p><strong>Scope.</strong> Findings are for paired C-code datasets, linear (and shallow nonlinear) probes, and 6.7–15B models. See the paper's limitations section before generalising.</p>
+        </div>
+
+        <div style="text-align:center; margin-top: 40px;">
+          <a class="btn primary" href="traces/">Explore the traces →</a>
+          <p class="caption" style="margin-top:14px;">Heatmaps of CWE-type separability, cross-family direction transfer and per-model layer curves.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="bibtex">
+      <div class="wrap">
+        <h2>BibTeX</h2>
+        <div class="narrow bibtex" style="margin-top: 26px;">
+          <button type="button" data-copy="#bibtex-text">Copy</button>
+<pre id="bibtex-text">@article{melo2026models,
+  title   = {When Models Know but Can't Linearly Say: Relational Encoding
+             Limits Linear Vulnerability Classification in Code LLMs},
+  author  = {Melo, Rui and Catarino, Andr{\'e} and Mamede, Cl{\'a}udia and
+             Pasareanu, Corina and Abreu, Rui},
+  journal = {arXiv preprint arXiv:2610.27257},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2610.27257}
+}</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Funded in part by FCT (2024.18549.PRT), the SALVE project (2024.14936.PEX) and HPC grant 2025.08039.CPCA.<br>
+      <a href="https://arxiv.org/abs/2610.27257">arXiv</a> ·
+      <a href="traces/">Traces</a> · Last updated 2026-10-22
+    </div>
+  </footer>
+  <button class="to-top" type="button" aria-label="Scroll to top">↑</button>
+
+  <script>
+    // Schematic figures (decorative, deterministic).
+    (() => {
+      const NS = "http://www.w3.org/2000/svg";
+      const mk = (p, tag, a, t) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); if (t != null) n.textContent = t; p.append(n); return n; };
+      const gauss = (mu, s, x) => Math.exp(-0.5 * ((x - mu) / s) ** 2);
+      const css = getComputedStyle(document.documentElement);
+      const SEC = "#2563eb", VUL = "#dc2626";
+
+      const g = document.getElementById("schem-global");
+      const base = 190, top = 40;
+      mk(g, "line", { x1: 20, x2: 380, y1: base, y2: base, stroke: "var(--border)", "stroke-width": 2 });
+      [[165, SEC], [215, VUL]].forEach(([mu, c]) => {
+        let d = `M20 ${base}`;
+        for (let x = 20; x <= 380; x += 4) d += ` L${x} ${base - gauss(mu, 38, x) * (base - top)}`;
+        d += ` L380 ${base} Z`;
+        mk(g, "path", { d, fill: c, "fill-opacity": 0.28, stroke: c, "stroke-width": 2.5 });
+      });
+      mk(g, "text", { x: 120, y: 62, fill: SEC, "font-size": 13, "font-weight": 700, "text-anchor": "end" }, "secure");
+      mk(g, "text", { x: 262, y: 62, fill: VUL, "font-size": 13, "font-weight": 700 }, "vulnerable");
+      mk(g, "text", { x: 200, y: 215, fill: "var(--text-2)", "font-size": 12, "text-anchor": "middle" }, "projection onto vulnerability direction →");
+
+      const p = document.getElementById("schem-paired");
+      mk(p, "defs", {}).innerHTML = `<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>`;
+      // [secure x, vulnerable x]: offsets shift whole pairs so the marginals overlap, one pair inverted.
+      const pairs = [[60, 120], [95, 165], [150, 205], [120, 190], [205, 262], [180, 250], [240, 300], [270, 215], [225, 290], [310, 352]];
+      pairs.forEach(([a, b], i) => {
+        const y = 36 + i * 17;
+        const ok = b > a;
+        mk(p, "line", { x1: a, y1: y, x2: ok ? b - 7 : b + 7, y2: y, stroke: ok ? "var(--text-3)" : "#f59e0b", "stroke-width": 2, "marker-end": "url(#ah)" });
+        mk(p, "circle", { cx: a, cy: y, r: 5.5, fill: SEC });
+        mk(p, "circle", { cx: b, cy: y, r: 5.5, fill: VUL });
+      });
+      mk(p, "line", { x1: 20, x2: 380, y1: 214, y2: 214, stroke: "var(--border)", "stroke-width": 2 });
+      mk(p, "text", { x: 200, y: 229, fill: "var(--text-2)", "font-size": 12, "text-anchor": "middle" }, "each row is one (secure → vulnerable) pair");
+    })();
+
+    // Data-driven pieces.
+    fetch("traces/data/explorer.json").then((r) => r.json()).then((data) => {
+      AlignmentChart(document.getElementById("alignment-chart"), data, { yMin: 60 });
+      const rows = Object.entries(data.models).filter(([, m]) => m.length_controlled)
+        .sort((a, b) => b[1].length_controlled.auroc - a[1].length_controlled.auroc);
+      const tb = document.querySelector("#length-table tbody");
+      rows.forEach(([k, m]) => {
+        const tr = document.createElement("tr");
+        const w = ((m.length_controlled.auroc - 0.5) / 0.2) * 100;
+        tr.innerHTML = `<td><strong>${m.label}</strong></td><td class="num">L${m.length_controlled.layer}</td><td class="num">${m.length_controlled.auroc.toFixed(3)}</td>
+          <td><div style="height:8px;border-radius:99px;background:var(--bg-tint)"><div style="height:8px;border-radius:99px;width:${w}%;background:${SiteUtil.FAMILY_COLOR[m.family]}"></div></div></td>`;
+        tb.append(tr);
+      });
+    }).catch(() => {
+      document.getElementById("alignment-chart").innerHTML = '<p class="muted" style="text-align:center">Chart data unavailable offline. Serve the folder over HTTP to view.</p>';
+    });
+  </script>
+</body>
+</html>

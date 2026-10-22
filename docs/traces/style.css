@@ -1,0 +1,32 @@
+.panel-head { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end; margin-bottom: 20px; }
+.panel-head h1 { font-size: 1.7rem; font-weight: 800; flex: 1 1 100%; }
+.panel-head p { flex: 1 1 100%; margin: 0; color: var(--text-2); max-width: 760px; }
+.ctrl { display: flex; flex-direction: column; gap: 6px; font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); }
+.ctrl .chips { text-transform: none; letter-spacing: 0; }
+
+.kpis { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 20px; }
+.kpi { flex: 1 1 160px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow-sm); }
+.kpi b { display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
+.kpi span { font-size: .8rem; color: var(--text-2); }
+
+.heat-wrap { overflow-x: auto; padding-bottom: 6px; }
+.heat { border-collapse: separate; border-spacing: 3px; width: auto; margin: 0 auto; }
+.heat th { background: none; border: 0; padding: 4px 6px; font-size: .75rem; text-transform: none; letter-spacing: 0; color: var(--text-2); font-weight: 600; white-space: nowrap; }
+.heat th.col { writing-mode: vertical-rl; transform: rotate(180deg); text-align: left; height: 92px; }
+.heat th.row { text-align: right; }
+.heat td { border: 0; padding: 0; width: 58px; height: 46px; text-align: center; border-radius: 8px; font-size: .82rem; font-weight: 600; font-variant-numeric: tabular-nums; cursor: default; transition: transform .1s, box-shadow .1s; }
+.heat td:hover { transform: scale(1.08); box-shadow: var(--shadow-md); position: relative; z-index: 2; }
+.heat td.diag { background: var(--bg-tint) !important; color: var(--text-3); }
+.heat td.sel { outline: 2px solid var(--text); outline-offset: 1px; }
+.legend { display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 16px; font-size: .8rem; color: var(--text-2); }
+.legend .bar { width: 200px; height: 10px; border-radius: 99px; background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 6%, var(--surface)), var(--primary)); }
+.detail { margin-top: 16px; text-align: center; min-height: 1.6em; color: var(--text-2); font-size: .92rem; }
+.detail b { color: var(--text); }
+
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable:hover { color: var(--primary); }
+th .arrow { opacity: .6; margin-left: 4px; }
+.bar-cell { min-width: 120px; }
+.bar-cell div { height: 8px; border-radius: 99px; background: var(--bg-tint); }
+.bar-cell div i { display: block; height: 8px; border-radius: 99px; }
+.empty { text-align: center; padding: 40px 0; color: var(--text-2); }

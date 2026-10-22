@@ -1,0 +1,54 @@
+{
+  "model": "qwen-7b",
+  "experiment": "paired_ranking",
+  "ranking_accuracy": {
+    "0": {
+      "accuracy": 59.53443005839536,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "3": {
+      "accuracy": 58.21287973755316,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "7": {
+      "accuracy": 58.22111780615084,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "11": {
+      "accuracy": 58.21519669434626,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "15": {
+      "accuracy": 58.21772282084985,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "19": {
+      "accuracy": 58.23365189880241,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "23": {
+      "accuracy": 58.367279163848906,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    },
+    "27": {
+      "accuracy": 56.26814848925568,
+      "n_vulnerable": 2493,
+      "n_secure": 2493,
+      "total_pairs": 6215049
+    }
+  }
+}
